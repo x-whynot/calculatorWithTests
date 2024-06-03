@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+
+    body {
+        background-color: rgb(255, 204, 0);
+        color: rgb(0, 0, 0);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .Calculator1 {
+        margin: 0 auto;
+        text-align: center; 
+        margin-bottom: 40px;
+    }   
+
+    .Calculator2 {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .button {
+        margin-right: 15px; 
+        padding: 10px 15px; 
+    }
+
+    #Calculator {
+        width: 210px; 
+        height: 20px;
+    }
+
+    #click1 {
+        width: 200px; 
+        height: 20px;
+    }
+
+    #test1 {
+        width: 200px; 
+        height: 20px;
+    }
+
+    #test2 {
+        width: 200px; 
+        height: 20px;
+    }
+
+    #test3 {
+        width: 200px; 
+        height: 20px;
+    }
+
+    #test4 {
+        width: 200px; 
+        height: 20px;
+    }
+
+    .buttonX {
+        width: 205px;
+        height: 25px;
+        background-color: aqua;
+    }
+
+    #resultTests1 {
+        width: 200px; 
+        height: 20px;
+    }
+    
+    </style>
+    
+</head>
+
+<body>
+    <div class="Calculator1">
+        <h1>
+            Calculator
+        </h1>
+        <p>
+            This calculator can add(+), subtract(-), multiply(*), divide(/)
+        </p>
+        <textarea name="Calculator" id="calc" cols="23" rows="1"></textarea> 
+        <p>
+            <button name="button1" class="button">1</button> 
+            <button name="button2" class="button">2</button>
+            <button name="button3" class="button">3</button>
+        </p>
+        <p>
+            <button name="button4" class="button">4</button>
+            <button name="button5" class="button">5</button>
+            <button name="button6" class="button">6</button>
+        </p>
+        <p>
+            <button name="button7" class="button">7</button>
+            <button name="button8" class="button">8</button>
+            <button name="button9" class="button">9</button>
+        </p>
+        <p>
+            <button name="buttonC" class="button">C</button>
+            <button name="button0" class="button">0</button>
+            <button id="buttonD" class="button">=</button>
+        </p>   
+        <p>
+            <button name="buttonI" class="button">+</button> 
+            <button name="buttonO" class="button">-</button> 
+            <button name="buttonP" class="button">/</button>
+            <button name="buttonA" class="button">*</button>
+        </p>
+    </div>
+
+    <div class="Calculator2">
+        <h1>Calculator tests</h1>
+        <p>Click on button 8</p>
+        <textarea name="click1" id="click1" cols="5" rows="1"></textarea>
+        <p>Addition test</p>
+        <textarea  name="test1" id="test1" cols="5" rows="1"></textarea>
+        <p>Subtraction test</p>
+        <textarea  name="test2" id="test2" cols="5" rows="1"></textarea>
+        <p>Multiplication test</p>
+        <textarea  name="test3" id="test3" cols="5" rows="1"></textarea>
+        <p>Тест на ділення</p>
+        <textarea  name="test4" id="test4" cols="5" rows="1"></textarea>
+        <br>
+        <p>Test results</p>
+        <textarea name="resultTests1" id="resultTests1"></textarea>
+    </div>
+
+    <script>
+
+        let button1 = document.querySelector('button[name="button1"]');
+        let button2 = document.querySelector('button[name="button2"]');
+        let button3 = document.querySelector('button[name="button3"]');
+        let button4 = document.querySelector('button[name="button4"]');
+        let button5 = document.querySelector('button[name="button5"]');
+        let button6 = document.querySelector('button[name="button6"]');
+        let button7 = document.querySelector('button[name="button7"]');
+        let button8 = document.querySelector('button[name="button8"]');
+        let button9 = document.querySelector('button[name="button9"]');
+        let button0 = document.querySelector('button[name="button0"]');
+        let buttonI = document.querySelector('button[name="buttonI"]');
+        let buttonO = document.querySelector('button[name="buttonO"]');
+        let buttonP = document.querySelector('button[name="buttonP"]');
+        let buttonA = document.querySelector('button[name="buttonA"]');
+
+        let buttonD = document.querySelector('button[id="buttonD"]');
+
+        let buttonC = document.querySelector('button[name="buttonC"]');
+
+        let calculatorDisplay = document.querySelector('textarea[name="Calculator"]');
+
+        let successfulTests = 0;
+        let failedTests = 0;
+
+        button1.addEventListener('click', function() {
+            appendNumber(1);
+        });
+        button2.addEventListener('click', function() {
+            appendNumber(2);
+        });
+        button3.addEventListener('click', function() {
+            appendNumber(3);
+        });
+        button4.addEventListener('click', function() {
+            appendNumber(4);
+        });
+        button5.addEventListener('click', function() {
+            appendNumber(5);
+        });
+        button6.addEventListener('click', function() {
+            appendNumber(6);
+        });
+        button7.addEventListener('click', function() {
+            appendNumber(7);
+        });
+        button8.addEventListener('click', function() {
+            appendNumber(8);
+        });
+        button9.addEventListener('click', function() {
+            appendNumber(9);
+        });
+        button0.addEventListener('click', function() {
+            appendNumber(0);
+        });
+
+        buttonI.addEventListener('click', function() {
+            appendOperator("+");
+        });
+
+        buttonO.addEventListener('click', function() {
+            appendOperator("-");
+        });
+
+        buttonP.addEventListener('click', function() {
+            appendOperator("/");
+        });
+
+        buttonA.addEventListener('click', function() {
+            appendOperator("*");
+        });
+
+        buttonC.addEventListener('click', function() {
+            clearDisplay();
+        });
+
+        buttonD.addEventListener('click', function() {
+            calculate();
+        });
+
+        function appendNumber(number) {
+            calculatorDisplay.value += number;
+}
+
+        function appendOperator(operator) {
+            calculatorDisplay.value += operator;
+}
+
+        function calculate() {
+            let expression = calculatorDisplay.value;
+            let result = eval(expression);
+            calculatorDisplay.value = result;
+}
+
+        function clearDisplay() {
+            calculatorDisplay.value = "";
+}
+
+
+        function comparisonTest(expectedValue, actualValue, resultTextarea) {
+            let message;
+        if (expectedValue == actualValue) {
+            message = "The test was successful! Received: " + actualValue + ", expected: " + expectedValue;
+            resultTextarea.style.color = 'green';
+            successfulTests++; 
+        } else {
+            message = "The test failed. Received: " + actualValue + ", expected: " + expectedValue;
+            resultTextarea.style.color = 'red';
+            failedTests++;
+    }
+    clearDisplay()
+    updateTestResultsCounter();
+    return message;;
+}
+
+(function() {
+    let actualValue;
+    let expectedValue; 
+
+    button8.click();
+    actualValue = calculatorDisplay.value; 
+    expectedValue = "8"; 
+    resultTextarea = document.getElementById("click1");
+    resultMessage = comparisonTest(expectedValue, actualValue, resultTextarea);
+    resultTextarea.value = resultMessage;
+
+    expectedValue = 16;
+    calculatorDisplay.value = "";
+    button8.click();
+    buttonI.click();
+    button8.click();
+    buttonD.click();
+    actualValue = parseFloat(calculatorDisplay.value);
+    resultTextarea = document.getElementById("test1");
+    resultMessage = comparisonTest(expectedValue, actualValue, resultTextarea);
+    resultTextarea.value = resultMessage;
+
+    expectedValue = 10; 
+    calculatorDisplay.value = "";
+    button2.click();
+    button0.click();
+    buttonO.click();
+    button1.click();
+    button0.click();
+    buttonD.click();
+    actualValue = parseFloat(calculatorDisplay.value);
+    resultTextarea = document.getElementById("test2");
+    resultMessage = comparisonTest(expectedValue, actualValue, resultTextarea);
+    resultTextarea.value = resultMessage;
+
+    expectedValue = 63; 
+    calculatorDisplay.value = "";
+    button7.click();
+    buttonA.click();
+    button9.click();
+    buttonD.click();
+    actualValue = parseFloat(calculatorDisplay.value);
+    resultTextarea = document.getElementById("test3");
+    resultMessage = comparisonTest(expectedValue, actualValue, resultTextarea);
+    resultTextarea.value = resultMessage;
+
+    expectedValue = 7; 
+    calculatorDisplay.value = ""; 
+    button2.click();
+    button1.click();
+    buttonP.click();
+    button3.click();
+    buttonD.click();
+    actualValue = parseFloat(calculatorDisplay.value);
+    resultTextarea = document.getElementById("test4"); 
+    resultMessage = comparisonTest(expectedValue, actualValue, resultTextarea);
+    resultTextarea.value = resultMessage;
+})();
+
+    function updateTestResultsCounter() {
+    let resultTestsTextarea = document.getElementById("resultTests1");
+    resultTestsTextarea.value = "Successful: " + successfulTests + ", Failed: " + failedTests;
+    if (successfulTests > failedTests) {
+        resultTestsTextarea.style.color = 'green';
+    } else {
+        resultTestsTextarea.style.color = 'red';
+    }   
+}
+    </script>
+
+</body>
+</html>
